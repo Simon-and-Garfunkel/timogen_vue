@@ -5,7 +5,7 @@
 
     <div class="alert alert-info alert-dismissible">
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      <h4 class="alert-heading">Bienvenue sur Timogen. Les données utilisées datent du 1er Janvier 2023 (trouvable <a href="https://www.riziv.fgov.be/fr/themes/cout-remboursement/par-mutualite/prestations-individuelles/prix/Pages/kine-fr.aspx">ici</a>)</h4> 
+      <span class="alert-heading">Bienvenue sur Timogen. Les données utilisées datent du 1er Janvier 2023 (trouvable <a href="https://www.riziv.fgov.be/fr/themes/cout-remboursement/par-mutualite/prestations-individuelles/prix/Pages/kine-fr.aspx">ici</a>)</span> 
     </div>
 
     <h1>Timogen</h1>
@@ -163,7 +163,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 h1 {
