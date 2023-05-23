@@ -5,7 +5,7 @@
 
     <div class="alert alert-info alert-dismissible">
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      <span class="alert-heading">Bienvenue sur Timogen. Les données utilisées datent du 1er Janvier 2023 (trouvable <a href="https://www.riziv.fgov.be/fr/themes/cout-remboursement/par-mutualite/prestations-individuelles/prix/Pages/kine-fr.aspx">ici</a>)</span> 
+      <span class="alert-heading">Bienvenue sur Timogen. Les données utilisées datent du 1er Janvier 2023 (trouvable <a href="https://www.riziv.fgov.be/fr/themes/cout-remboursement/par-mutualite/prestations-individuelles/prix/Pages/kine-fr.aspx">ici</a>)</span>
     </div>
 
     <h1>Timogen</h1>
@@ -88,6 +88,7 @@
         Générer mon justificatif
       </button>
     </div>
+    <a class="d-block p-5 text-center" href="mailto:arthurgossuin+timogen@gmail.com">contactez-moi</a>
   </div>
 </template>
 

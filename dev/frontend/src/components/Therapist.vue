@@ -85,9 +85,12 @@ export default {
           input = removeAccents(input);
           filteredData = filteredData.filter((therapist) => {
             const therapistNameWords = therapist.name.split(' ');
-            return therapistNameWords.some((word) =>
-              word.toLowerCase().startsWith(input.toLowerCase())
-            );
+            const inputWords = input.split(' ');
+            return inputWords.every((inputWord) => {
+              return therapistNameWords.some((therapistNameWord) => {
+                return removeAccents(therapistNameWord.toLowerCase()).startsWith(inputWord.toLowerCase());
+              });
+            });
           });
         }
 
