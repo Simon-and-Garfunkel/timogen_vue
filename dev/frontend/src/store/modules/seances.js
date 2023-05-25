@@ -21,8 +21,14 @@ const getters = {
             })
         })
         ordered_list = ordered_list.sort((a, b) => a.day.date > b.day.date ? 1 : -1)
+        var report_met = false;
         for (let i = 0; i < ordered_list.length; i++) {
-            ordered_list[i].index = (parseInt(state.first_seance) || 0) + i
+            if (ordered_list[i].day.kind == 'REPORT') {
+                ordered_list[i].index = -1;
+                report_met = true;
+                continue
+            }
+            ordered_list[i].index = (parseInt(state.first_seance) || 0) + i - (report_met ? 1 : 0);
         }
         return ordered_list
     },

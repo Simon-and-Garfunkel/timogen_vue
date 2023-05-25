@@ -38,7 +38,7 @@
         </tr>
 
         <tr v-for="seance in seances" :key="seance.index">
-          <td>{{ seance.index }}</td>
+          <td>{{ seance.index >= 1 ? seance.index : "" }}</td>
           <td>{{ seance.day.eu_format }}</td>
           <td>
             <div v-for="line in seance.lines" :key="line.id">
@@ -101,10 +101,9 @@ export default {
     }),
     seances: {
       get() {
-        var report_first_count = this.ordered_seances[0].day.kind === "REPORT";
         this.ordered_seances.forEach((seance) => {
           var lines = []
-          if (seance.index == 1 + report_first_count) {
+          if (seance.index == 1) {
             lines = this.patho.lines.filter(line => line.kind === "INTAKE")
           }
           // set priority
