@@ -78,7 +78,8 @@ export default {
   props: ["index"],
   computed: {
     dates() {
-      return this.days.map((day) => day.date);
+      // do not show the reports in the calendar
+      return this.days.filter((day) => day.kind !== "REPORT").map((day) => day.date);
     },
     attributes() {
       return this.dates.map((date) => ({
@@ -97,23 +98,26 @@ export default {
           id: day.id,
           eu_format: day.id.split("-").reverse().join(" / "),
           date: day.date,
-          kind: "CLASSIC",
+          kind: "CLASSIC",  // this does not exist, but is used to trigger the kind from the ADS
         });
       }
       this.emitDate();
     },
     emitDate() {
       let new_dates = {
-        days: this.days,
+        days: [...this.days],
         ads_number: this.ads_number,
       };
       if (this.report) {
-        new_dates = new_dates.days.push({
-          id: this.report_date.id,
-          eu_format: this.report_date.id.split("-").reverse().join(" / "),
-          date: this.report_date.date,
+        var formatted_date = this.report_date.toISOString().split("T")[0];
+        new_dates.days.push({
+          id: formatted_date,
+          eu_format: formatted_date.split("-").reverse().join(" / "),
+          date: this.report_date,
           kind: "REPORT",
         });
+      } else {
+        new_dates.days = new_dates.days.filter((day) => day.kind !== "REPORT");
       }
       this.$emit("receive", this.index, new_dates);
     },

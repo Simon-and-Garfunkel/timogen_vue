@@ -15,12 +15,12 @@ const getters = {
         state.ads_list.forEach(ads => {
             ads.days.forEach(day => {
                 ordered_list.push({
-                    date: day,
+                    day: day,
                     ads: ads.ads_number
                 })
             })
         })
-        ordered_list = ordered_list.sort((a, b) => a.date > b.date ? 1 : -1)
+        ordered_list = ordered_list.sort((a, b) => a.day.date > b.day.date ? 1 : -1)
         for (let i = 0; i < ordered_list.length; i++) {
             ordered_list[i].index = (parseInt(state.first_seance) || 0) + i
         }

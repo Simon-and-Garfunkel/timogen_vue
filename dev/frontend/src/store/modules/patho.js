@@ -32,7 +32,7 @@ const getters = {
         .filter(item => item !== 'INTAKE')
         .filter(item => item !== 'DOUBLE')
         .filter(item => item !== 'SECOND')
-        .filter(item => item !== 'REPORT')
+        // .filter(item => item !== 'REPORT')
       kinds = [...new Set(kinds)].sort()
       return kinds
     }

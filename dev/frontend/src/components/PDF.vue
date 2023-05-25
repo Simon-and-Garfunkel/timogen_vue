@@ -39,7 +39,7 @@
 
         <tr v-for="seance in seances" :key="seance.index">
           <td>{{ seance.index }}</td>
-          <td>{{ seance.date.eu_format }}</td>
+          <td>{{ seance.day.eu_format }}</td>
           <td>
             <div v-for="line in seance.lines" :key="line.id">
               {{ line.code }}
@@ -101,9 +101,10 @@ export default {
     }),
     seances: {
       get() {
+        var report_first_count = this.ordered_seances[0].day.kind === "REPORT";
         this.ordered_seances.forEach((seance) => {
           var lines = []
-          if (seance.index == 1) {
+          if (seance.index == 1 + report_first_count) {
             lines = this.patho.lines.filter(line => line.kind === "INTAKE")
           }
           // set priority
@@ -114,14 +115,21 @@ export default {
               seance.index > this.patho.breakpoints[1])
           // find the right line
           for (priority; priority >= 0; priority--) {
-            var good_line = this.patho.lines.filter(
+            var good_lines = this.patho.lines.filter(
               (line) =>
-                line.kind === this.kind &&
-                line.priority == priority &&
-                line.duration == this.duration
-            )
-            if (good_line.length) {
-              lines.push(good_line[0])
+                line.kind === seance.day.kind)
+            if (!good_lines.length) {
+              good_lines = this.patho.lines.filter(
+              (line) =>
+                (line.kind === this.kind &&
+                  line.priority == priority &&
+                  line.duration == this.duration
+                )
+              )
+            }
+            if (good_lines.length) {
+              good_lines = good_lines.sort(line => -line.priority)
+              lines.push(good_lines[0])
               break
             }
           }
